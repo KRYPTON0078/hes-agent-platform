@@ -1,4 +1,4 @@
-package com.hes.server.domain.device;
+﻿package com.hes.server.domain.device;
 
 import com.hes.server.domain.site.SiteEntity;
 import jakarta.persistence.*;
@@ -27,6 +27,9 @@ public class DeviceEntity {
 
     @Column(name = "firmware_version", length = 32)
     private String firmwareVersion;
+
+    @Column(length = 256)
+    private String tags;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 32)
@@ -62,6 +65,8 @@ public class DeviceEntity {
     public void setModel(String model) { this.model = model; }
     public String getFirmwareVersion() { return firmwareVersion; }
     public void setFirmwareVersion(String firmwareVersion) { this.firmwareVersion = firmwareVersion; }
+    public String getTags() { return tags; }
+    public void setTags(String tags) { this.tags = tags; }
     public DeviceStatus getStatus() { return status; }
     public void setStatus(DeviceStatus status) { this.status = status; }
     public Instant getLastSeenAt() { return lastSeenAt; }
