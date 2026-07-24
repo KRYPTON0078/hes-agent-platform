@@ -1,0 +1,37 @@
+# Build
+target/
+**/target/
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+build/
+.gradle/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+!.vscode/extensions.json
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+
+# Logs / runtime
+*.log
+logs/
+tmp/
+.temp/
+
+# Docker volumes
+docker/data/
