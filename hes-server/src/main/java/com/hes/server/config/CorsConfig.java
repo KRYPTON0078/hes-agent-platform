@@ -1,4 +1,4 @@
-﻿package com.hes.server.config;
+package com.hes.server.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

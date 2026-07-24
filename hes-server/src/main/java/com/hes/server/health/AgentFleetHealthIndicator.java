@@ -1,4 +1,4 @@
-﻿package com.hes.server.health;
+package com.hes.server.health;
 
 import com.hes.server.domain.device.DeviceRepository;
 import com.hes.server.presence.OnlinePresenceStore;

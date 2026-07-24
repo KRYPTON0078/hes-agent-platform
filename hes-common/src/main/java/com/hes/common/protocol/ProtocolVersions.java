@@ -1,4 +1,4 @@
-﻿package com.hes.common.protocol;
+package com.hes.common.protocol;
 
 import java.util.Set;
 

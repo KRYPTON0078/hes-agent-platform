@@ -1,4 +1,4 @@
-﻿# ADR 0002: Presence store abstraction
+# ADR 0002: Presence store abstraction
 
 ## Status
 Accepted

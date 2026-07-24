@@ -1,4 +1,4 @@
-﻿# Interview talking points
+# Interview talking points
 
 1. Designed Agent collect/report/control as a versioned protocol envelope
 2. Split hot telemetry_latest from append-only history with composite indexes

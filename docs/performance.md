@@ -1,4 +1,4 @@
-﻿# Performance notes
+# Performance notes
 
 ## SQL
 - Prefer telemetry_latest for dashboards

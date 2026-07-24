@@ -1,4 +1,4 @@
-﻿package com.hes.server.domain.device;
+package com.hes.server.domain.device;
 
 import com.hes.server.domain.site.SiteEntity;
 import jakarta.persistence.*;

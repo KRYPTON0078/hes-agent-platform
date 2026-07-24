@@ -1,4 +1,4 @@
-﻿# FAQ
+# FAQ
 
 ## Why H2 in local profile?
 So recruiters can run the API without Docker while still validating Flyway migrations.

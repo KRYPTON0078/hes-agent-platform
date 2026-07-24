@@ -1,4 +1,4 @@
-﻿.PHONY: test run simulator smoke
+.PHONY: test run simulator smoke
 test:
 	mvn -q test
 run:

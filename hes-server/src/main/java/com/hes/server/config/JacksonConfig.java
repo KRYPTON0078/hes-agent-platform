@@ -1,4 +1,4 @@
-﻿package com.hes.server.config;
+package com.hes.server.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

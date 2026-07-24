@@ -1,4 +1,4 @@
-﻿# Ops runbook
+# Ops runbook
 
 ## Device offline
 1. Check /api/v1/ops/fleet

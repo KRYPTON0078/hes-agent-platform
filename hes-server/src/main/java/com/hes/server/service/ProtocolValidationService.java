@@ -1,4 +1,4 @@
-﻿package com.hes.server.service;
+package com.hes.server.service;
 
 import com.hes.common.error.ErrorCode;
 import com.hes.common.protocol.AgentMessage;

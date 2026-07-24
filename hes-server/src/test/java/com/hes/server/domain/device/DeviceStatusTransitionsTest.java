@@ -1,4 +1,4 @@
-﻿package com.hes.server.domain.device;
+package com.hes.server.domain.device;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

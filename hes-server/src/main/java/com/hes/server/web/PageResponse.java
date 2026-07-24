@@ -1,4 +1,4 @@
-﻿package com.hes.server.web;
+package com.hes.server.web;
 
 import java.util.List;
 

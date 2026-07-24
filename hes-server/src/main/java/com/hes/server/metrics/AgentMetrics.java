@@ -1,4 +1,4 @@
-﻿package com.hes.server.metrics;
+package com.hes.server.metrics;
 
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
