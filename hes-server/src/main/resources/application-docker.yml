@@ -32,6 +32,8 @@ hes:
   agent:
     heartbeat-ttl-seconds: 90
     command-timeout-seconds: 30
+  alert:
+    low-soc-threshold: 15.0
 
 rocketmq:
   name-server: ${ROCKETMQ_NAMESRV:rocketmq-namesrv:9876}

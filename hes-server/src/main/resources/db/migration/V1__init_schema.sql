@@ -80,7 +80,7 @@ CREATE TABLE command_record (
     command_id          VARCHAR(64)  NOT NULL,
     device_id           BIGINT       NOT NULL,
     command_type        VARCHAR(64)  NOT NULL,
-    payload_json        CLOB         NULL,
+    payload_json        TEXT         NULL,
     status              VARCHAR(32)  NOT NULL DEFAULT 'PENDING',
     idempotency_key     VARCHAR(128) NOT NULL,
     requested_by        VARCHAR(64)  NULL,
@@ -98,7 +98,7 @@ CREATE TABLE command_event (
     id                  BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
     command_id          BIGINT       NOT NULL,
     event_type          VARCHAR(32)  NOT NULL,
-    detail_json         CLOB         NULL,
+    detail_json         TEXT         NULL,
     created_at          TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_command_event_command FOREIGN KEY (command_id) REFERENCES command_record (id)
 );

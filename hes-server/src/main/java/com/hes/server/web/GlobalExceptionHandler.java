@@ -21,6 +21,21 @@ public class GlobalExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<ApiError> handleBusiness(BusinessException ex, HttpServletRequest request) {
+        HttpStatus status = switch (ex.getCode()) {
+            case DEVICE_NOT_FOUND -> HttpStatus.NOT_FOUND;
+            case DEVICE_OFFLINE -> HttpStatus.CONFLICT;
+            case UNAUTHORIZED -> HttpStatus.UNAUTHORIZED;
+            case IDEMPOTENCY_CONFLICT -> HttpStatus.CONFLICT;
+            case COMMAND_TIMEOUT -> HttpStatus.GATEWAY_TIMEOUT;
+            case PROTOCOL_UNSUPPORTED -> HttpStatus.BAD_REQUEST;
+            default -> HttpStatus.BAD_REQUEST;
+        };
+        return ResponseEntity.status(status)
+                .body(new ApiError(ex.getCode(), ex.getMessage(), resolveTraceId(request)));
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiError> handleValidation(MethodArgumentNotValidException ex, HttpServletRequest request) {
         String message = ex.getBindingResult().getFieldErrors().stream()
