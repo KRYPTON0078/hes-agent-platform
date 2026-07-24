@@ -33,6 +33,8 @@ hes:
   agent:
     heartbeat-ttl-seconds: 90
     command-timeout-seconds: 30
+  alert:
+    low-soc-threshold: 15.0
 
 spring.autoconfigure.exclude: >
   org.apache.rocketmq.spring.autoconfigure.RocketMQAutoConfiguration,
