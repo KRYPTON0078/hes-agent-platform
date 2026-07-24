@@ -1,4 +1,4 @@
-﻿# ADR 0003: Command idempotency keys
+# ADR 0003: Command idempotency keys
 
 ## Status
 Accepted

@@ -1,4 +1,4 @@
-﻿package com.hes.server.web;
+package com.hes.server.web;
 
 import com.hes.server.domain.device.DeviceEntity;
 import com.hes.server.domain.device.DeviceStatus;

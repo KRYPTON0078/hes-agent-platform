@@ -1,4 +1,4 @@
-﻿# Contributing
+# Contributing
 
 1. Use JDK 21 and Maven 3.9+
 2. Keep commits focused and English

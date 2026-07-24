@@ -1,4 +1,4 @@
-﻿package com.hes.server.web;
+package com.hes.server.web;
 
 import com.hes.server.domain.site.SiteEntity;
 import com.hes.server.domain.site.SiteRepository;

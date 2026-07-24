@@ -1,4 +1,4 @@
-﻿package com.hes.server.service;
+package com.hes.server.service;
 
 import com.hes.server.domain.telemetry.TelemetryHistoryEntity;
 import com.hes.server.domain.telemetry.TelemetryHistoryRepository;

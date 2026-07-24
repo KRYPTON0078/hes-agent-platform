@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 set -euo pipefail
 BASE=${1:-http://localhost:8080}
 DEVICE_ID=${2:-HES-SMOKE-001}

@@ -1,4 +1,4 @@
-﻿# ADR 0001: Dual transport for Agent protocol
+# ADR 0001: Dual transport for Agent protocol
 
 ## Status
 Accepted

@@ -1,4 +1,4 @@
-﻿package com.hes.server.presence;
+package com.hes.server.presence;
 
 import com.hes.server.config.HesProperties;
 import org.junit.jupiter.api.Test;

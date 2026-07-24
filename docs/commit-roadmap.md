@@ -1,4 +1,4 @@
-﻿# Commit roadmap (portfolio narrative)
+# Commit roadmap (portfolio narrative)
 
 1. Scaffold monorepo + Compose
 2. Schema/indexes + domain

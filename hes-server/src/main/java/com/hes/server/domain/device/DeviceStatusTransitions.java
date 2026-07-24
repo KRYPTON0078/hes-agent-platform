@@ -1,4 +1,4 @@
-﻿package com.hes.server.domain.device;
+package com.hes.server.domain.device;
 
 import java.util.EnumSet;
 import java.util.Map;

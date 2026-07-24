@@ -1,4 +1,4 @@
-﻿package com.hes.common.protocol;
+package com.hes.common.protocol;
 
 import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-﻿package com.hes.server.web;
+package com.hes.server.web;
 
 /** Shared OpenAPI narrative examples for Swagger UI. */
 public final class OpenApiExamples {

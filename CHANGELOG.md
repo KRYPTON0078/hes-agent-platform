@@ -1,4 +1,4 @@
-﻿# Changelog
+# Changelog
 
 ## 0.1.0
 - Spring Boot Agent platform scaffold

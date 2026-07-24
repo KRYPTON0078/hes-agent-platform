@@ -1,4 +1,4 @@
-﻿# ERD (logical)
+# ERD (logical)
 
 ```mermaid
 erDiagram
