@@ -1,0 +1,20 @@
+﻿spring:
+  config:
+    activate:
+      on-profile: prod
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+
+logging:
+  level:
+    root: INFO
+    com.hes: INFO
+
+management:
+  endpoint:
+    health:
+      show-details: never
