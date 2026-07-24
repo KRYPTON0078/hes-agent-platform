@@ -1,0 +1,29 @@
+﻿{
+  "info": {
+    "name": "HES Agent Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Ping",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/ping" }
+    },
+    {
+      "name": "Fleet",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/ops/fleet" }
+    },
+    {
+      "name": "Register Agent",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/v1/agent/messages",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"protocolVersion\": \"1.0\",\n  \"type\": \"AGENT_REGISTER\",\n  \"messageId\": \"msg-1\",\n  \"deviceId\": \"HES-SIM-001\",\n  \"payload\": { \"model\": \"HES-BAT-10K\", \"firmwareVersion\": \"1.2.0\" }\n}"
+        }
+      }
+    }
+  ],
+  "variable": [{ "key": "baseUrl", "value": "http://localhost:8080" }]
+}
