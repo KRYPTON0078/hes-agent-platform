@@ -20,14 +20,28 @@ Versioned JSON protocol between residential energy-storage **Agents** and the HE
 | Type | Direction | Purpose |
 |---|---|---|
 | `AGENT_REGISTER` | Agent → Cloud | First-time / re-register device |
-| `AGENT_REGISTER_ACK` | Cloud → Agent | Accept + session hints |
-| `HEARTBEAT` | Agent → Cloud | Liveness; drives Redis online TTL |
-| `HEARTBEAT_ACK` | Cloud → Agent | Optional clock skew / config |
+| `AGENT_REGISTER_ACK` | Cloud → Agent | Accept + `apiKey` + site hints |
+| `HEARTBEAT` | Agent → Cloud | Liveness; drives online TTL |
+| `HEARTBEAT_ACK` | Cloud → Agent | Clock / status |
 | `TELEMETRY_REPORT` | Agent → Cloud | SOC, power, faults |
 | `TELEMETRY_ACK` | Cloud → Agent | Persist accepted |
 | `COMMAND_DISPATCH` | Cloud → Agent | Charge / discharge / limits |
-| `COMMAND_ACK` | Agent → Cloud | Success / failure / progress |
+| `COMMAND_ACK` | Agent → Cloud | Success / failure |
 | `ERROR` | either | Protocol or business error |
+
+## HTTP routes
+
+| Method | Path | Auth | Notes |
+|---|---|---|---|
+| `POST` | `/api/v1/agent/messages` | none for `AGENT_REGISTER`; `X-Api-Key` otherwise | Single ingress for Agent envelopes |
+| `GET` | `/api/v1/agent/{deviceId}/commands` | `X-Api-Key` | Long-poll style drain of pending `COMMAND_DISPATCH` |
+
+## RocketMQ topics (docker profile)
+
+| Topic | Producer | Consumer |
+|---|---|---|
+| `hes-telemetry` | `RocketMqAgentEventBus` | `TelemetryRocketMqConsumer` → persist |
+| `hes-command` | `RocketMqAgentEventBus` | `CommandRocketMqConsumer` → poll buffer |
 
 ## Telemetry fields (energy domain)
 
@@ -40,9 +54,19 @@ Versioned JSON protocol between residential energy-storage **Agents** and the HE
 - `faultCode` / `faultMessage`
 - `operatingMode` — e.g. `IDLE`, `CHARGING`, `DISCHARGING`, `STANDBY`
 
-## Transport
+## Register payload extras
 
-- **HTTP** (local demo / fallback): `POST /api/v1/agent/messages`
-- **MQTT / MQ path** (docker profile): ingest topic → RocketMQ → consumers
+- `siteCode` / `siteName` / `timezone` — household site binding
+- optional `apiKey` — if omitted, server generates one
 
-Exact HTTP routes and MQTT topics are wired in subsequent commits.
+## Command ACK payload
+
+```json
+{
+  "commandId": "uuid",
+  "success": true,
+  "appliedMode": "CHARGING"
+}
+```
+
+Terminal command states (`ACKED` / `FAILED` / `TIMEOUT`) reject duplicate ACKs with `ALREADY_TERMINAL`.

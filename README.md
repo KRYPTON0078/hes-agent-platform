@@ -1,78 +1,88 @@
 # HES Agent Platform
 
-**Home Energy Storage Agent Platform** — a production-style Java backend that manages residential battery/inverter **Agents**: registry, heartbeat, telemetry ingest, remote command/control, and ops/alerting.
+**Home Energy Storage Agent Platform** — production-style Java backend for residential battery/inverter **Agents**: registry, heartbeat, telemetry ingest, remote command/control, and ops/alerting.
 
-Built as a portfolio project aligned with Java backend + Agent docking + middleware roles in home energy storage.
+Repo: https://github.com/KRYPTON0078/hes-agent-platform
 
-## Why this repo exists
+## JD skill matrix
 
-Recruiters scanning this GitHub should see end-to-end ownership of:
-
-| Skill (JD-aligned) | Where it lives |
+| Skill | Evidence in this repo |
 |---|---|
-| Spring Boot backend | `hes-server` |
-| MySQL schema + indexes | `hes-server/.../db/migration` |
-| Redis (online status / idempotency) | planned in device registry phase |
-| RocketMQ (async telemetry / commands) | Docker Compose + consumers (next phases) |
-| Nginx reverse proxy | `docker/nginx` |
-| Agent protocol collect / report / control | `hes-common` + `hes-agent-simulator` |
-| Unit / integration tests | expanding with Testcontainers |
-| English docs + architecture | `docs/` |
+| Spring Boot / Java EE style backend | `hes-server` (Web, Validation, JPA, Actuator, OpenAPI) |
+| Independent DB design + SQL indexes | Flyway `V1__init_schema.sql` + [docs/database.md](docs/database.md) |
+| Redis | Online TTL, command idempotency, latest telemetry snapshot (docker) + in-memory fallbacks (local) |
+| RocketMQ | `hes-telemetry` / `hes-command` producers + consumers (docker profile) |
+| Nginx | `docker/nginx/default.conf` + Compose |
+| Agent docking / protocol | `hes-common` protocol + `/api/v1/agent/**` + `X-Api-Key` auth |
+| Collect / report / control | register, telemetry pipeline, command dispatch/ACK/timeout audit |
+| Ops / O&M | `/api/v1/ops/**`, alerts (LOW_SOC / FAULT / OFFLINE), fleet overview |
+| Tests | JUnit5 unit tests + optional Testcontainers MySQL schema IT + GitHub Actions CI |
 
 ## Architecture
 
 ```text
-Agent Simulator  --protocol v1-->  Nginx  -->  Spring Boot API
-                                              |-- MySQL (Flyway)
-                                              |-- Redis
-                                              |-- RocketMQ --> consumers
+Agent Simulator --protocol v1 + X-Api-Key--> Nginx --> Spring Boot API
+                                                     |- MySQL (Flyway)
+                                                     |- Redis (online / idempotency / snapshot)
+                                                     |- RocketMQ (async telemetry + commands)
 ```
+
+Details: [docs/architecture.md](docs/architecture.md) · [docs/protocol.md](docs/protocol.md) · [docs/database.md](docs/database.md)
 
 ## Modules
 
-- `hes-common` — protocol DTOs, message types, error codes
-- `hes-server` — Spring Boot 3 / Java 21 API, Flyway, Actuator, OpenAPI
-- `hes-agent-simulator` — simulated energy-storage Agent client
+- `hes-common` — protocol DTOs / error codes
+- `hes-server` — Spring Boot 3 / Java 21 API
+- `hes-agent-simulator` — simulated field Agent
 
-## Quick start (local, no Docker)
+## Quick start (local, H2, no Docker)
 
-Requirements: **JDK 21**, **Maven 3.9+**
+Requires **JDK 21** and **Maven 3.9+**.
 
 ```bash
 mvn -pl hes-server -am spring-boot:run
 ```
 
-Smoke check:
-
 ```bash
 curl http://localhost:8080/api/v1/ping
+# Swagger: http://localhost:8080/swagger-ui.html
 ```
 
-Swagger UI: http://localhost:8080/swagger-ui.html
+Smoke script (PowerShell): `scripts/smoke.ps1`
 
-## Full stack (Docker Compose)
+### Run Agent simulator
+
+```bash
+# terminal 1
+mvn -pl hes-server -am spring-boot:run
+
+# terminal 2
+mvn -pl hes-agent-simulator -am exec:java -Dexec.args="HES-SIM-001 http://localhost:8080"
+```
+
+### Issue a command (ops)
+
+```bash
+curl -X POST http://localhost:8080/api/v1/ops/devices/HES-SIM-001/commands \
+  -H "Content-Type: application/json" \
+  -d "{\"commandType\":\"START_CHARGE\",\"params\":{\"watts\":2000},\"idempotencyKey\":\"demo-1\"}"
+```
+
+## Docker Compose (MySQL + Redis + RocketMQ + Nginx)
 
 ```bash
 docker compose up --build
 ```
 
-Then hit the API via Nginx on port 80 or directly on 8080.
+API via Nginx: `http://localhost/` · direct: `http://localhost:8080`
 
-## Protocol (v1)
+## Tests
 
-Message types: `AGENT_REGISTER`, `HEARTBEAT`, `TELEMETRY_REPORT`, `COMMAND_DISPATCH`, `COMMAND_ACK`  
-See [docs/protocol.md](docs/protocol.md).
+```bash
+mvn -B verify
+```
 
-## Roadmap (committed in phases)
-
-1. Scaffold + Docker + docs (this commit)
-2. Domain entities + richer Flyway notes
-3. Agent registry + Redis online status
-4. Telemetry pipeline + RocketMQ
-5. Command control loop + audit
-6. Ops APIs + alerts
-7. Full Agent simulator loop
-8. Testcontainers + polish
+MySQL Testcontainers IT runs only when Docker is available (`FlywaySchemaIT`).
 
 ## License
 
