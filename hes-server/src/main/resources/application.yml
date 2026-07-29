@@ -48,3 +48,5 @@ hes:
     agent:
       max-failed-auths: 8
       lock-seconds: 300
+    rate-limit:
+      per-minute: 120
