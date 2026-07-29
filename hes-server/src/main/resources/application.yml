@@ -35,3 +35,16 @@ logging:
   level:
     root: INFO
     com.hes: DEBUG
+
+hes:
+  security:
+    jwt:
+      secret: ${HES_JWT_SECRET:local-dev-only-change-me-32b-min-secret!!}
+      access-ttl-seconds: 900
+      refresh-ttl-seconds: 604800
+    auth:
+      max-failed-logins: 5
+      lock-minutes: 15
+    agent:
+      max-failed-auths: 8
+      lock-seconds: 300
