@@ -1,0 +1,270 @@
+{
+  "calibration": {
+    "calib_seeds": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51
+    ],
+    "eval_seeds": [
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71
+    ],
+    "s1_std": 0.0014119314326060117,
+    "s2_std": 0.09881973693317465,
+    "params": {
+      "capacity_kwh": 10.0,
+      "eta_charge": 0.95,
+      "eta_discharge": 0.95,
+      "dt_s": 60.0,
+      "s1_threshold": 0.007059657163030059,
+      "s1_cusum_drift": 0.0007059657163030059,
+      "s1_cusum_h": 0.006,
+      "s1_ewma_threshold": 0.004235794297818035,
+      "s2_threshold": 0.3952789477326986,
+      "s2_cusum_drift": 0.04940986846658733,
+      "s2_cusum_h": 1.0,
+      "s2_ewma_threshold": 0.296459210799524,
+      "ewma_alpha": 0.2,
+      "s1_std": 0.0014119314326060117,
+      "s2_std": 0.09881973693317465
+    },
+    "coefficients": {
+      "S1_TH_K": 5.0,
+      "S1_CUSUM_DRIFT_K": 0.5,
+      "S1_CUSUM_H_K": 4.0,
+      "S2_TH_K": 4.0,
+      "S2_CUSUM_DRIFT_K": 0.5,
+      "S2_CUSUM_H_K": 8.0,
+      "S2_EWMA_TH_K": 3.0,
+      "S2_EWMA_ALPHA": 0.2
+    }
+  },
+  "long_fpr_mean_apd": {
+    "apd_s1_th": 0.007142857142857143,
+    "apd_s1_cu": 0.04285714285714286,
+    "apd_s1_ew": 0.0,
+    "apd_s2_th": 0.07142857142857142,
+    "apd_s2_cu": 0.04285714285714286,
+    "apd_s2_ew": 0.007142857142857143,
+    "apd_fuse": 0.0857142857142857
+  },
+  "long_fpr_mean_fpr": {
+    "fpr_s1_th": 4.96031746031746e-06,
+    "fpr_s1_cu": 2.9761904761904765e-05,
+    "fpr_s1_ew": 0.0,
+    "fpr_s2_th": 4.96031746031746e-05,
+    "fpr_s2_cu": 0.0001240079365079365,
+    "fpr_s2_ew": 4.96031746031746e-06,
+    "fpr_fuse": 0.00015376984126984128
+  },
+  "baseline_matched": [
+    {
+      "detector": "threshold",
+      "scale": 1.0,
+      "fpr": 0.0,
+      "tpr_a5": 1.0,
+      "delay_a5": 0.0,
+      "target_fpr": 0.0
+    },
+    {
+      "detector": "ewma",
+      "scale": 0.5,
+      "fpr": 0.0,
+      "tpr_a5": 1.0,
+      "delay_a5": 0.0,
+      "target_fpr": 0.0
+    },
+    {
+      "detector": "cusum",
+      "scale": 1.0,
+      "fpr": 0.0,
+      "tpr_a5": 1.0,
+      "delay_a5": 0.0,
+      "target_fpr": 0.0
+    }
+  ],
+  "mdip_nominal": [
+    {
+      "inject_kw": 0.2,
+      "detection_rate": 1.0,
+      "mean_delay": 6.625
+    },
+    {
+      "inject_kw": 0.5,
+      "detection_rate": 1.0,
+      "mean_delay": 1.875
+    },
+    {
+      "inject_kw": 1.0,
+      "detection_rate": 1.0,
+      "mean_delay": 0.625
+    },
+    {
+      "inject_kw": 2.0,
+      "detection_rate": 1.0,
+      "mean_delay": 0.0
+    },
+    {
+      "inject_kw": 3.0,
+      "detection_rate": 1.0,
+      "mean_delay": 0.0
+    }
+  ],
+  "mdip_table": [
+    {
+      "meter_noise_std": 0.02,
+      "load_est_noise_std": 0.05,
+      "mdip_kw": 0.2,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.02,
+      "load_est_noise_std": 0.08,
+      "mdip_kw": 0.2,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.02,
+      "load_est_noise_std": 0.2,
+      "mdip_kw": 0.2,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.05,
+      "load_est_noise_std": 0.05,
+      "mdip_kw": 0.2,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.05,
+      "load_est_noise_std": 0.08,
+      "mdip_kw": 0.2,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.05,
+      "load_est_noise_std": 0.2,
+      "mdip_kw": 0.2,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.15,
+      "load_est_noise_std": 0.05,
+      "mdip_kw": 0.2,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.15,
+      "load_est_noise_std": 0.08,
+      "mdip_kw": 0.2,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.15,
+      "load_est_noise_std": 0.2,
+      "mdip_kw": 0.2,
+      "target_dr": 0.9
+    }
+  ],
+  "a6_alpha_sweep": [
+    {
+      "alpha": 0.0,
+      "s2_detection_rate": 1.0,
+      "fuse_detection_rate": 1.0,
+      "mean_delay_s2": 0.0
+    },
+    {
+      "alpha": 0.25,
+      "s2_detection_rate": 1.0,
+      "fuse_detection_rate": 1.0,
+      "mean_delay_s2": 0.0
+    },
+    {
+      "alpha": 0.5,
+      "s2_detection_rate": 1.0,
+      "fuse_detection_rate": 1.0,
+      "mean_delay_s2": 0.0
+    },
+    {
+      "alpha": 0.75,
+      "s2_detection_rate": 1.0,
+      "fuse_detection_rate": 1.0,
+      "mean_delay_s2": 1.0
+    },
+    {
+      "alpha": 0.9,
+      "s2_detection_rate": 1.0,
+      "fuse_detection_rate": 1.0,
+      "mean_delay_s2": 3.25
+    },
+    {
+      "alpha": 1.0,
+      "s2_detection_rate": 0.0,
+      "fuse_detection_rate": 0.16666666666666666,
+      "mean_delay_s2": NaN
+    }
+  ],
+  "detection_by_scenario": {
+    "A1_soc_bias": {
+      "s1_cu": 1.0,
+      "s2_cu": 0.0,
+      "fuse": 1.0,
+      "delay_s2": null
+    },
+    "A2_soc_ramp": {
+      "s1_cu": 1.0,
+      "s2_cu": 0.0,
+      "fuse": 1.0,
+      "delay_s2": null
+    },
+    "A3_cmd_inject": {
+      "s1_cu": 1.0,
+      "s2_cu": 1.0,
+      "fuse": 1.0,
+      "delay_s2": 0.0
+    },
+    "A4_coordinated": {
+      "s1_cu": 1.0,
+      "s2_cu": 1.0,
+      "fuse": 1.0,
+      "delay_s2": 0.0
+    },
+    "A5_stealth_consistent": {
+      "s1_cu": 0.15,
+      "s2_cu": 1.0,
+      "fuse": 1.0,
+      "delay_s2": 0.0
+    },
+    "A6_load_est_spoof": {
+      "s1_cu": 0.15,
+      "s2_cu": 1.0,
+      "fuse": 1.0,
+      "delay_s2": 0.0
+    }
+  }
+}

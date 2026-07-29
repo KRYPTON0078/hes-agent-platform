@@ -1,0 +1,16 @@
+scenario,seed,fpr_s1_cu,fpr_s2_cu,fpr_fuse,fpr_s1_th,detected_s1_th,delay_s1_th,detected_s1_cu,delay_s1_cu,fpr_ewma,detected_ewma,delay_ewma,fpr_s2_th,detected_s2_th,delay_s2_th,detected_s2_cu,delay_s2_cu,detected_fuse,delay_fuse
+benign_3day,42,0.0,0.01273148148148148,0.01273148148148148,,,,,,,,,,,,,,,
+benign_3day,43,0.0,0.016203703703703703,0.016203703703703703,,,,,,,,,,,,,,,
+benign_3day,44,0.0,0.0060185185185185185,0.0060185185185185185,,,,,,,,,,,,,,,
+benign_3day,45,0.0,0.018287037037037036,0.018287037037037036,,,,,,,,,,,,,,,
+benign_3day,46,0.0,0.013888888888888888,0.013888888888888888,,,,,,,,,,,,,,,
+A4_coordinated_3day,42,0.0,0.0,0.0,0.0,True,12.0,True,2.0,0.0,True,13.0,0.0,True,0.0,True,0.0,True,0.0
+A4_coordinated_3day,43,0.0,0.011111111111111112,0.011111111111111112,0.0,True,45.0,True,1.0,0.0,True,55.0,0.0,True,0.0,True,0.0,True,0.0
+A4_coordinated_3day,44,0.0,0.0,0.0,0.0,False,,True,1.0,0.0,True,42.0,0.0,True,0.0,True,0.0,True,0.0
+A4_coordinated_3day,45,0.0,0.0,0.0,0.0,True,21.0,True,1.0,0.0,True,31.0,0.0,True,0.0,True,0.0,True,0.0
+A4_coordinated_3day,46,0.0,0.005555555555555556,0.005555555555555556,0.0,True,12.0,True,2.0,0.0,True,21.0,0.0,True,0.0,True,0.0,True,0.0
+A5_stealth_consistent_3day,42,0.0,0.0,0.0,0.0,False,,False,,0.0,False,,0.0,True,0.0,True,0.0,True,0.0
+A5_stealth_consistent_3day,43,0.0,0.011111111111111112,0.011111111111111112,0.0,False,,False,,0.0,False,,0.0,True,0.0,True,0.0,True,0.0
+A5_stealth_consistent_3day,44,0.0,0.0,0.0,0.0,False,,False,,0.0,False,,0.0,True,0.0,True,0.0,True,0.0
+A5_stealth_consistent_3day,45,0.0,0.0,0.0,0.0,False,,False,,0.0,False,,0.0,True,0.0,True,0.0,True,0.0
+A5_stealth_consistent_3day,46,0.0,0.005555555555555556,0.005555555555555556,0.0,False,,False,,0.0,False,,0.0,True,0.0,True,0.0,True,0.0

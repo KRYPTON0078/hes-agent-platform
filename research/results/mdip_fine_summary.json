@@ -1,0 +1,100 @@
+{
+  "mdip_nominal": [
+    {
+      "inject_kw": 0.05,
+      "detection_rate": 1.0,
+      "mean_delay": 126.75
+    },
+    {
+      "inject_kw": 0.1,
+      "detection_rate": 1.0,
+      "mean_delay": 23.75
+    },
+    {
+      "inject_kw": 0.15,
+      "detection_rate": 1.0,
+      "mean_delay": 11.625
+    },
+    {
+      "inject_kw": 0.2,
+      "detection_rate": 1.0,
+      "mean_delay": 6.625
+    },
+    {
+      "inject_kw": 0.5,
+      "detection_rate": 1.0,
+      "mean_delay": 1.875
+    },
+    {
+      "inject_kw": 1.0,
+      "detection_rate": 1.0,
+      "mean_delay": 0.625
+    },
+    {
+      "inject_kw": 2.0,
+      "detection_rate": 1.0,
+      "mean_delay": 0.0
+    },
+    {
+      "inject_kw": 3.0,
+      "detection_rate": 1.0,
+      "mean_delay": 0.0
+    }
+  ],
+  "mdip_table": [
+    {
+      "meter_noise_std": 0.02,
+      "load_est_noise_std": 0.05,
+      "mdip_kw": 0.1,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.02,
+      "load_est_noise_std": 0.08,
+      "mdip_kw": 0.05,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.02,
+      "load_est_noise_std": 0.2,
+      "mdip_kw": 0.05,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.05,
+      "load_est_noise_std": 0.05,
+      "mdip_kw": 0.05,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.05,
+      "load_est_noise_std": 0.08,
+      "mdip_kw": 0.05,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.05,
+      "load_est_noise_std": 0.2,
+      "mdip_kw": 0.05,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.15,
+      "load_est_noise_std": 0.05,
+      "mdip_kw": 0.05,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.15,
+      "load_est_noise_std": 0.08,
+      "mdip_kw": 0.05,
+      "target_dr": 0.9
+    },
+    {
+      "meter_noise_std": 0.15,
+      "load_est_noise_std": 0.2,
+      "mdip_kw": 0.05,
+      "target_dr": 0.9
+    }
+  ]
+}
