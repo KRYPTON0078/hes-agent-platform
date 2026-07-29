@@ -1,0 +1,22 @@
+package com.hes.server.security.anomaly.generated;
+
+import com.hes.server.security.anomaly.AnomalyDetector;
+import com.hes.server.security.anomaly.AnomalyFinding;
+import com.hes.server.security.anomaly.AnomalySignal;
+import org.springframework.stereotype.Component;
+import java.util.Optional;
+
+@Component
+public class Ano056Detector implements AnomalyDetector {
+    @Override public String id() { return "ANO-056"; }
+    @Override public String description() { return "Detect SOC_DROP when numeric value exceeds 26"; }
+    @Override
+    public Optional<AnomalyFinding> detect(AnomalySignal signal) {
+        if (signal == null || signal.signalType() == null) { return Optional.empty(); }
+        if ("SOC_DROP".equals(signal.signalType()) && signal.numericValue() > 26) {
+            return Optional.of(new AnomalyFinding(id(), signal.deviceId(),
+                "SOC_DROP exceeded threshold 26", signal.numericValue() / 26));
+        }
+        return Optional.empty();
+    }
+}
