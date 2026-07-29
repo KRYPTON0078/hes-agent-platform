@@ -1,0 +1,4 @@
+detector,scale,fpr,tpr_a5,delay_a5,target_fpr
+threshold,1.0,0.0,1.0,0.0,0.0
+ewma,0.5,0.0,1.0,0.0,0.0
+cusum,1.0,0.0,1.0,0.0,0.0

@@ -1,0 +1,14 @@
+{
+  "capacity_kwh": 10.0,
+  "eta_charge": 0.95,
+  "eta_discharge": 0.95,
+  "dt_s": 60.0,
+  "s1_threshold": 0.006728237638822236,
+  "s1_cusum_drift": 0.0006728237638822237,
+  "s1_cusum_h": 0.006,
+  "s2_threshold": 0.3681947999028187,
+  "s2_cusum_drift": 0.04602434998785234,
+  "s2_cusum_h": 0.5,
+  "ewma_alpha": 0.2,
+  "ewma_threshold": 0.004036942583293342
+}
