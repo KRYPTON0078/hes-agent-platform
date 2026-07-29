@@ -7,11 +7,13 @@ import com.hes.server.domain.device.DeviceCredentialRepository;
 import com.hes.server.domain.device.DeviceRepository;
 import com.hes.server.domain.site.SiteRepository;
 import com.hes.server.presence.InMemoryOnlinePresenceStore;
+import com.hes.server.security.agentcred.AgentCredentialService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Map;
 import java.util.Optional;
@@ -33,11 +35,14 @@ class DeviceRegistryServiceTest {
     @BeforeEach
     void setUp() {
         HesProperties properties = new HesProperties();
+        AgentCredentialService agentCredentialService = new AgentCredentialService(
+                deviceRepository, credentialRepository, new BCryptPasswordEncoder(4), 8, 300);
         service = new DeviceRegistryService(
                 deviceRepository,
                 credentialRepository,
                 siteRepository,
-                new InMemoryOnlinePresenceStore(properties)
+                new InMemoryOnlinePresenceStore(properties),
+                agentCredentialService
         );
         when(deviceRepository.findByDeviceId(any())).thenReturn(Optional.empty());
         when(deviceRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
