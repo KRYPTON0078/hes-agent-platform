@@ -7,15 +7,12 @@ import com.hes.server.domain.device.*;
 import com.hes.server.domain.site.SiteEntity;
 import com.hes.server.domain.site.SiteRepository;
 import com.hes.server.presence.OnlinePresenceStore;
+import com.hes.server.security.agentcred.AgentCredentialService;
 import com.hes.server.web.BusinessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
-import java.util.HexFormat;
 import java.util.Map;
 import java.util.UUID;
 
@@ -26,15 +23,18 @@ public class DeviceRegistryService {
     private final DeviceCredentialRepository credentialRepository;
     private final SiteRepository siteRepository;
     private final OnlinePresenceStore presenceStore;
+    private final AgentCredentialService agentCredentialService;
 
     public DeviceRegistryService(DeviceRepository deviceRepository,
                                  DeviceCredentialRepository credentialRepository,
                                  SiteRepository siteRepository,
-                                 OnlinePresenceStore presenceStore) {
+                                 OnlinePresenceStore presenceStore,
+                                 AgentCredentialService agentCredentialService) {
         this.deviceRepository = deviceRepository;
         this.credentialRepository = credentialRepository;
         this.siteRepository = siteRepository;
         this.presenceStore = presenceStore;
+        this.agentCredentialService = agentCredentialService;
     }
 
     @Transactional
@@ -68,7 +68,7 @@ public class DeviceRegistryService {
         DeviceCredentialEntity credential = credentialRepository.findByDevice_Id(device.getId())
                 .orElseGet(DeviceCredentialEntity::new);
         credential.setDevice(device);
-        credential.setApiKeyHash(sha256(apiKey));
+        credential.setApiKeyHash(agentCredentialService.hashApiKey(apiKey));
         credential.setActive(true);
         credentialRepository.save(credential);
 
@@ -109,12 +109,15 @@ public class DeviceRegistryService {
         if (apiKey == null || apiKey.isBlank()) {
             throw new BusinessException(ErrorCode.UNAUTHORIZED, "Missing X-Api-Key");
         }
+        agentCredentialService.assertNotLocked(deviceId);
         DeviceEntity device = requireDevice(deviceId);
         DeviceCredentialEntity credential = credentialRepository.findByDevice_Id(device.getId())
                 .orElseThrow(() -> new BusinessException(ErrorCode.UNAUTHORIZED, "No credential for device"));
-        if (!credential.isActive() || !credential.getApiKeyHash().equals(sha256(apiKey))) {
+        if (!credential.isActive() || !agentCredentialService.matches(apiKey, credential.getApiKeyHash())) {
+            agentCredentialService.recordFailure(deviceId);
             throw new BusinessException(ErrorCode.UNAUTHORIZED, "Invalid API key");
         }
+        agentCredentialService.recordSuccess(deviceId);
     }
 
     public DeviceEntity requireDevice(String deviceId) {
@@ -135,12 +138,4 @@ public class DeviceRegistryService {
         return value == null ? fallback : String.valueOf(value);
     }
 
-    static String sha256(String raw) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            return HexFormat.of().formatHex(digest.digest(raw.getBytes(StandardCharsets.UTF_8)));
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalStateException(e);
-        }
-    }
 }
