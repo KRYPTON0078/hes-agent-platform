@@ -1,0 +1,22 @@
+package com.hes.server.security.anomaly.generated;
+
+import com.hes.server.security.anomaly.AnomalyDetector;
+import com.hes.server.security.anomaly.AnomalyFinding;
+import com.hes.server.security.anomaly.AnomalySignal;
+import org.springframework.stereotype.Component;
+import java.util.Optional;
+
+@Component
+public class Ano101Detector implements AnomalyDetector {
+    @Override public String id() { return "ANO-101"; }
+    @Override public String description() { return "Detect TELEMETRY_GAP when numeric value exceeds 31"; }
+    @Override
+    public Optional<AnomalyFinding> detect(AnomalySignal signal) {
+        if (signal == null || signal.signalType() == null) { return Optional.empty(); }
+        if ("TELEMETRY_GAP".equals(signal.signalType()) && signal.numericValue() > 31) {
+            return Optional.of(new AnomalyFinding(id(), signal.deviceId(),
+                "TELEMETRY_GAP exceeded threshold 31", signal.numericValue() / 31));
+        }
+        return Optional.empty();
+    }
+}
