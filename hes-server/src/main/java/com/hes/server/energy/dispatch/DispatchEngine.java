@@ -16,17 +16,20 @@ public class DispatchEngine {
     private final DispatchEventRepository eventRepository;
     private final List<DispatchPredicate> predicates;
     private final ObjectMapper objectMapper;
+    private final DispatchAuditHook auditHook;
 
     public DispatchEngine(DispatchPolicyRepository policyRepository,
                           DispatchDecisionRepository decisionRepository,
                           DispatchEventRepository eventRepository,
                           List<DispatchPredicate> predicates,
-                          ObjectMapper objectMapper) {
+                          ObjectMapper objectMapper,
+                          DispatchAuditHook auditHook) {
         this.policyRepository = policyRepository;
         this.decisionRepository = decisionRepository;
         this.eventRepository = eventRepository;
         this.predicates = predicates;
         this.objectMapper = objectMapper;
+        this.auditHook = auditHook;
     }
 
     @Transactional
@@ -79,6 +82,7 @@ public class DispatchEngine {
             decision.setSignalSnapshotJson("{}");
         }
         decisionRepository.save(decision);
+        auditHook.onDecision(decision);
 
         DispatchEventEntity event = new DispatchEventEntity();
         event.setEventId(UUID.randomUUID().toString());
