@@ -1,0 +1,14 @@
+package com.hes.server.protocol.v11.generated;
+
+import com.hes.server.protocol.v11.ProtocolFieldValidator;
+import org.springframework.stereotype.Component;
+import java.util.Optional;
+
+@Component
+public class ProtocolFieldValidator013 implements ProtocolFieldValidator {
+    @Override public String id() { return "PFV-013"; }
+    @Override public String fieldName() { return "messageId"; }
+    @Override public Optional<String> validate(Object value) {
+        String s = value == null ? "" : String.valueOf(value); return s.length() >= 21 ? Optional.empty() : Optional.of("PFV-013 messageId short");
+    }
+}
