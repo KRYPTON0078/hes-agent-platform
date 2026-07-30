@@ -24,7 +24,7 @@ class TouPeakDischargeMatcherTest {
         ScheduleWindowEntity w = new ScheduleWindowEntity();
         w.setWindowType(ScheduleWindowType.TOU_PEAK_DISCHARGE);
         w.setStartMinute(start); w.setEndMinute(end); w.setDayMask(127);
-        w.setSocMin(floor); w.setTargetMode(TargetOperatingMode.DISCHARGE);
+        w.setSocMin(floor); w.setTargetMode(TargetOperatingMode.DISCHARGING);
         return w;
     }
 
