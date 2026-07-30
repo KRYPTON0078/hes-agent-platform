@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS dispatch_policy (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    policy_code VARCHAR(64) NOT NULL UNIQUE,
+    name VARCHAR(128) NOT NULL,
+    enabled TINYINT(1) NOT NULL DEFAULT 1,
+    priority INT NOT NULL DEFAULT 100,
+    max_export_watts DECIMAL(12,2) NULL,
+    soc_reserve_pct DECIMAL(5,2) NULL,
+    demand_response TINYINT(1) NOT NULL DEFAULT 0,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
