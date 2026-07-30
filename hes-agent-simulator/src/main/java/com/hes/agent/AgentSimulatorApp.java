@@ -34,6 +34,7 @@ public final class AgentSimulatorApp {
     private String apiKey;
     private BigDecimal soc = BigDecimal.valueOf(62.5);
     private String mode = "IDLE";
+    private final LocalScheduleEvaluator scheduleEvaluator = new LocalScheduleEvaluator(1020, 1260, java.math.BigDecimal.valueOf(20), java.math.BigDecimal.valueOf(95));
 
     public AgentSimulatorApp(String deviceId, String baseUrl) {
         this.deviceId = deviceId;
@@ -65,6 +66,7 @@ public final class AgentSimulatorApp {
         System.out.println("Registered: " + ack.type() + " apiKey=" + apiKey.substring(0, Math.min(8, apiKey.length())) + "...");
 
         while (true) {
+            mode = scheduleEvaluator.evaluate(java.time.LocalTime.now(), soc).name();
             post(AgentMessage.of(MessageType.HEARTBEAT, UUID.randomUUID().toString(), deviceId, Map.of("uptimeSec", 1)), true);
             evolveTelemetry();
             TelemetryPayload telemetry = currentTelemetry();
