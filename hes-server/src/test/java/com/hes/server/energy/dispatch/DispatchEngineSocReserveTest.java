@@ -30,7 +30,8 @@ class DispatchEngineSocReserveTest {
         when(decisionRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
         when(eventRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
 
-        DispatchEngine engine = new DispatchEngine(policyRepository, decisionRepository, eventRepository, List.of(), new ObjectMapper());
+        DispatchAuditHook audit = org.mockito.Mockito.mock(DispatchAuditHook.class);
+        DispatchEngine engine = new DispatchEngine(policyRepository, decisionRepository, eventRepository, List.of(), new ObjectMapper(), audit);
         // policy id null until persisted; engine uses getId which is null -> 0L path still records action
         DispatchDecisionEntity d = engine.evaluate("D1", Map.of("soc", BigDecimal.valueOf(20)));
         assertEquals("RESERVE_CHARGE", d.getDecidedAction());
