@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS ota_job (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    job_code VARCHAR(64) NOT NULL UNIQUE,
+    device_id VARCHAR(64) NOT NULL,
+    firmware_version VARCHAR(64) NOT NULL,
+    package_url VARCHAR(512) NOT NULL,
+    package_sha256 VARCHAR(64) NOT NULL,
+    phase VARCHAR(32) NOT NULL,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    KEY idx_ota_device_phase (device_id, phase)
+);
