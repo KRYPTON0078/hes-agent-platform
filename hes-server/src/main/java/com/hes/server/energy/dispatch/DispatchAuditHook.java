@@ -15,12 +15,14 @@ public class DispatchAuditHook {
     public void onDecision(DispatchDecisionEntity decision) {
         auditService.record(
                 "DISPATCH_DECISION",
+                "dispatch-engine",
                 decision.getDeviceId(),
                 Map.of(
                         "action", decision.getDecidedAction(),
                         "reason", decision.getReason(),
                         "policyId", String.valueOf(decision.getPolicyId())
-                )
+                ),
+                null
         );
     }
 }
