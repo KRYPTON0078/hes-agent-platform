@@ -41,7 +41,7 @@ public class DispatchEngine {
                 if (soc.compareTo(policy.getSocReservePct()) < 0) {
                     action = "RESERVE_CHARGE";
                     reason = "SOC below reserve " + policy.getPolicyCode();
-                    policyId = policy.getId();
+                    policyId = policy.getId() == null ? 0L : policy.getId();
                     break;
                 }
             }
@@ -50,14 +50,14 @@ public class DispatchEngine {
                 if (exportW.compareTo(policy.getMaxExportWatts()) > 0) {
                     action = "LIMIT_EXPORT";
                     reason = "Export exceeds limit " + policy.getPolicyCode();
-                    policyId = policy.getId();
+                    policyId = policy.getId() == null ? 0L : policy.getId();
                     break;
                 }
             }
             if (policy.isDemandResponse() && signals.getOrDefault("dr_active", BigDecimal.ZERO).compareTo(BigDecimal.ONE) >= 0) {
                 action = "DR_DISCHARGE";
                 reason = "Demand response " + policy.getPolicyCode();
-                policyId = policy.getId();
+                policyId = policy.getId() == null ? 0L : policy.getId();
                 break;
             }
         }
