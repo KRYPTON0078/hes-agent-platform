@@ -1,0 +1,16 @@
+package com.hes.server.energy.dispatch.generated;
+
+import com.hes.server.energy.dispatch.DispatchPredicate;
+import org.springframework.stereotype.Component;
+import java.math.BigDecimal;
+import java.util.Map;
+
+@Component
+public class DispatchPredicate000 implements DispatchPredicate {
+    @Override public String id() { return "DSP-000"; }
+    @Override public String description() { return "Export watts above threshold 1500 (DSP-000)"; }
+    @Override public boolean matches(Map<String, BigDecimal> signals) {
+        BigDecimal v = signals.getOrDefault("export_watts", BigDecimal.ZERO);
+        return v.compareTo(new BigDecimal("1500")) > 0;
+    }
+}
