@@ -87,3 +87,13 @@ MySQL Testcontainers IT runs only when Docker is available (`FlywaySchemaIT`).
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+## JD skill matrix (advanced)
+
+| Skill | Evidence in repo |
+| --- | --- |
+| Charge scheduling / TOU | `energy.schedule` + tariff slots + matcher tests |
+| Fleet analytics / forecast | rollups, `DeterministicForecastService`, FleetKpi APIs |
+| VPP dispatch | `DispatchEngine` + RocketMQ outbox bridge |
+| Observability / SLOs | Micrometer path metrics, `SloRegistry`, bulkhead/retry |
+| Agent protocol / OTA | v1.1 validators, enrollment tokens, OTA job FSM |
