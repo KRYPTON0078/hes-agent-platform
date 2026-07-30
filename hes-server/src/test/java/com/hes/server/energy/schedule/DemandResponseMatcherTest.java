@@ -13,7 +13,7 @@ class DemandResponseMatcherTest {
         ScheduleWindowEntity w = new ScheduleWindowEntity();
         w.setWindowType(ScheduleWindowType.DEMAND_RESPONSE);
         w.setStartMinute(960); w.setEndMinute(1200); w.setDayMask(127);
-        w.setTargetMode(TargetOperatingMode.DISCHARGE);
+        w.setTargetMode(TargetOperatingMode.DISCHARGING);
         assertTrue(matcher.matches(w, ctx(17, 0, DayOfWeek.MONDAY, BigDecimal.valueOf(55), BigDecimal.ZERO, true)));
         assertFalse(matcher.matches(w, ctx(17, 0, DayOfWeek.MONDAY, BigDecimal.valueOf(55), BigDecimal.ZERO, false)));
     }

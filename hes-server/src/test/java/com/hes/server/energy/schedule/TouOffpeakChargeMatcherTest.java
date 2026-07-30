@@ -24,7 +24,7 @@ class TouOffpeakChargeMatcherTest {
         ScheduleWindowEntity w = new ScheduleWindowEntity();
         w.setWindowType(ScheduleWindowType.TOU_OFFPEAK_CHARGE);
         w.setStartMinute(start); w.setEndMinute(end); w.setDayMask(127);
-        w.setSocMax(ceil); w.setTargetMode(TargetOperatingMode.CHARGE);
+        w.setSocMax(ceil); w.setTargetMode(TargetOperatingMode.CHARGING);
         return w;
     }
 

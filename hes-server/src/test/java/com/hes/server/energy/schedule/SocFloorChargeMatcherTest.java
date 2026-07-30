@@ -14,7 +14,7 @@ class SocFloorChargeMatcherTest {
         w.setWindowType(ScheduleWindowType.SOC_FLOOR_CHARGE);
         w.setStartMinute(0); w.setEndMinute(1440); w.setDayMask(127);
         w.setSocMin(BigDecimal.valueOf(20));
-        w.setTargetMode(TargetOperatingMode.CHARGE);
+        w.setTargetMode(TargetOperatingMode.CHARGING);
         assertTrue(matcher.matches(w, ctx(8, 20, DayOfWeek.WEDNESDAY, BigDecimal.valueOf(15), BigDecimal.ZERO, false)));
     }
 

@@ -13,7 +13,7 @@ class WeekendEcoMatcherTest {
         ScheduleWindowEntity w = new ScheduleWindowEntity();
         w.setWindowType(ScheduleWindowType.WEEKEND_ECO);
         w.setStartMinute(0); w.setEndMinute(1440); w.setDayMask(127);
-        w.setTargetMode(TargetOperatingMode.SELF_CONSUME);
+        w.setTargetMode(TargetOperatingMode.STANDBY);
         assertTrue(matcher.matches(w, ctx(10, 0, DayOfWeek.SATURDAY, BigDecimal.valueOf(50), BigDecimal.ZERO, false)));
         assertFalse(matcher.matches(w, ctx(10, 0, DayOfWeek.MONDAY, BigDecimal.valueOf(50), BigDecimal.ZERO, false)));
     }
